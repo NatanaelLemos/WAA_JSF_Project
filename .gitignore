@@ -2,3 +2,5 @@ out/
 target/
 .idea/
 bin/
+derby-docker/dbs/
+derby-docker/nodejs/

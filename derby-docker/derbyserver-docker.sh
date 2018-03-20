@@ -13,7 +13,7 @@ fi
 sudo docker run -dP \
 -p 5000:5000 \
 -p 1527:1527 \
--v /nodejs/docker-apache-derby-copie/webgui/:/webgui \
--v /dbs:/dbs \
+-v $(pwd)/nodejs/docker-apache-derby-copie/webgui/:/webgui \
+-v $(pwd)/dbs:/dbs \
 --name $app \
 -t adito/apache-derby
