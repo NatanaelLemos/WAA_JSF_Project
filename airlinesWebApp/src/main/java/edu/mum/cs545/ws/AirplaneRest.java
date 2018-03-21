@@ -11,8 +11,6 @@ import java.util.List;
 
 @Named
 @Path("airplane")
-@Produces("application/json")
-@Consumes("application/json")
 public class AirplaneRest {
 
     @Inject

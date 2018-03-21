@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Departure {
+public class AirlineFlight {
     private long id;
     private String flightnr;
     private Date departureDate;

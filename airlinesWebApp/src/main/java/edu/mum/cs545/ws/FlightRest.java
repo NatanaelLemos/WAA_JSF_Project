@@ -10,8 +10,6 @@ import java.util.List;
 
 @Named
 @Path("flight")
-@Produces("application/json")
-@Consumes("application/json")
 public class FlightRest {
 
     @Inject

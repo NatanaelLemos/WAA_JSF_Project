@@ -8,7 +8,7 @@ import cs545.airline.service.AirlineService;
 import cs545.airline.service.AirplaneService;
 import cs545.airline.service.AirportService;
 import cs545.airline.service.FlightService;
-import edu.mum.cs545.dto.Departure;
+import edu.mum.cs545.dto.AirlineFlight;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -38,7 +38,7 @@ public class CreateFlightRest {
 
     @POST
     @Path("{id}/flight")
-    public Flight postDeparture(@PathParam("id") long id, Departure departure) {
+    public Flight postFlight(@PathParam("id") long id, AirlineFlight departure) {
         List<Flight> flights = flightService.findAll();
         Airline airline = new Airline();
         airline.setId(id);
