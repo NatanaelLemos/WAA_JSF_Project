@@ -98,4 +98,9 @@ public class AirportDao {
 		return entityManager.createQuery("select a from Airport a", Airport.class).getResultList();
 	}
 
+
+//	public void save(Airport airport){
+//		entityManager.
+//		entityManager.flush();
+//	}
 }

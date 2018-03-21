@@ -108,20 +108,22 @@ public class AirportRest extends WsBase {
         airplane = airplaneService.find(airplane);
 
         Flight flight = new Flight(
-            departure.getFlightnr(),
-            departure.getDepartureDate(),
-            departure.getDepartureTime(),
-            departure.getArrivalDate(),
-            departure.getArrivalTime(),
-            airline,
-            airport,
-            destination,
-            airplane
+                departure.getFlightnr(),
+                departure.getDepartureDate(),
+                departure.getDepartureTime(),
+                departure.getArrivalDate(),
+                departure.getArrivalTime(),
+                airline,
+                airport,
+                destination,
+                airplane
         );
 
+        airport.setName(airport.getName() + "a");
         airport.addDeparture(flight);
-        //airportService.update(airport);
-        flightService.create(flight);
+        Airport s = airportService.update(airport);
+        System.out.println("Updated airport name " + s.getName());
+        //flightService.create(flight);
 
         return removeRelations(flight);
     }
