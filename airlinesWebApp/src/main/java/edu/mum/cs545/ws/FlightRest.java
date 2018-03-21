@@ -12,20 +12,14 @@ import java.util.List;
 @Path("flight")
 @Produces("application/json")
 @Consumes("application/json")
-public class FlightRest extends WsBase {
+public class FlightRest {
 
     @Inject
     private FlightService flightService;
 
     @GET
     public List<Flight>  get() {
-        List<Flight> flights = flightService.findAll();
-
-        for (Flight flight : flights) {
-            removeRelations(flight);
-        }
-
-        return flights;
+        return flightService.findAll();
     }
 
     @GET
@@ -33,7 +27,6 @@ public class FlightRest extends WsBase {
     public Flight get(@PathParam("id") long id) {
         Flight flight = new Flight();
         flight.setId(id);
-        flight = flightService.find(flight);
-        return removeRelations(flight);
+        return flightService.find(flight);
     }
 }

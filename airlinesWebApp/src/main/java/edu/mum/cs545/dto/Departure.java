@@ -11,7 +11,7 @@ public class Departure {
     private Date departureTime;
     private Date arrivalDate;
     private Date arrivalTime;
-    private long airlineId;
+    private long originId;
     private long destinationId;
     private long airplaneId;
 
@@ -62,8 +62,8 @@ public class Departure {
         }
     }
 
-    public long getAirlineId() { return airlineId; }
-    public void setAirlineId(long airlineId) { this.airlineId = airlineId; }
+    public long getOriginId() { return originId; }
+    public void setOriginId(long originId) { this.originId = originId; }
 
     public long getDestinationId() { return destinationId; }
     public void setDestinationId(long destinationId) { this.destinationId = destinationId; }

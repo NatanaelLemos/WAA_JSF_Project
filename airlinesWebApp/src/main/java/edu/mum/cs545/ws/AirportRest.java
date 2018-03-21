@@ -19,26 +19,14 @@ import java.util.List;
 @Path("airport")
 @Produces("application/json")
 @Consumes("application/json")
-public class AirportRest extends WsBase {
+public class AirportRest {
 
     @Inject
     private AirportService airportService;
-    @Inject
-    private AirlineService airlineService;
-    @Inject
-    private AirplaneService airplaneService;
-    @Inject
-    private FlightService flightService;
 
     @GET
     public List<Airport> get() {
-        List<Airport> airports = airportService.findAll();
-
-        for (Airport airport : airports) {
-            removeFlights(airport);
-        }
-
-        return airports;
+        return airportService.findAll();
     }
 
     @GET
@@ -46,8 +34,7 @@ public class AirportRest extends WsBase {
     public Airport get(@PathParam("id") long id) {
         Airport airport = new Airport();
         airport.setId(id);
-        airport = airportService.find(airport);
-        return removeFlights(airport);
+        return airportService.find(airport);
     }
 
     @POST
@@ -60,8 +47,7 @@ public class AirportRest extends WsBase {
     @Path("{id}")
     public Airport put(@PathParam("id") long id, Airport airport) {
         airport.setId(id);
-        airportService.update(airport);
-        return airport;
+        return airportService.update(airport);
     }
 
     @DELETE
@@ -71,60 +57,5 @@ public class AirportRest extends WsBase {
         airport.setId(id);
         airport = airportService.find(airport);
         airportService.delete(airport);
-    }
-
-    @GET
-    @Path("{id}/departure")
-    public List<Flight> getDepartures(@PathParam("id") long id) {
-        Airport airport = new Airport();
-        airport.setId(id);
-        airport = airportService.find(airport);
-
-        List<Flight> departures = flightService.findByOrigin(airport);
-        for (Flight flight : departures) {
-            removeRelations(flight);
-        }
-
-        return departures;
-    }
-
-    @POST
-    @Path("{id}/departure")
-    public Flight postDeparture(@PathParam("id") long id, Departure departure) {
-        Airport airport = new Airport();
-        airport.setId(id);
-        airport = airportService.find(airport);
-
-        Airline airline = new Airline();
-        airline.setId(departure.getAirlineId());
-        airline = airlineService.find(airline);
-
-        Airport destination = new Airport();
-        destination.setId(departure.getDestinationId());
-        destination = airportService.find(destination);
-
-        Airplane airplane = new Airplane();
-        airplane.setId(departure.getAirplaneId());
-        airplane = airplaneService.find(airplane);
-
-        Flight flight = new Flight(
-                departure.getFlightnr(),
-                departure.getDepartureDate(),
-                departure.getDepartureTime(),
-                departure.getArrivalDate(),
-                departure.getArrivalTime(),
-                airline,
-                airport,
-                destination,
-                airplane
-        );
-
-        airport.setName(airport.getName() + "a");
-        airport.addDeparture(flight);
-        Airport s = airportService.update(airport);
-        System.out.println("Updated airport name " + s.getName());
-        //flightService.create(flight);
-
-        return removeRelations(flight);
     }
 }
