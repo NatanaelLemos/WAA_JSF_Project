@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
 
-import cs545.airline.model.Airplane;
 import cs545.airline.model.Flight;
 import edu.mum.gf.workaround.JpaUtil;
 
@@ -17,11 +16,11 @@ import edu.mum.gf.workaround.JpaUtil;
 @ApplicationScoped
 public class FlightDao {
 
-//	@PersistenceContext(unitName = "cs545")
-//	private static EntityManager entityManager;
-//  Couldn't figure out another way to inject the persistence context
+	// @PersistenceContext(unitName = "cs545")
+	// private static EntityManager entityManager;
+	// Couldn't figure out another way to inject the persistence context
 	private EntityManager entityManager = JpaUtil.getEntityManager();
-	
+
 	public void create(Flight flight) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(flight);
@@ -38,7 +37,7 @@ public class FlightDao {
 			entityManager.getTransaction().begin();
 			entityManager.remove(toremove);
 			entityManager.getTransaction().commit();
-		}	
+		}
 	}
 
 	public Flight findOne(long id) {
@@ -136,28 +135,40 @@ public class FlightDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Flight> findByFilters(Date date, Date time,String airlineName, String departure,String destination) {
-		Query query = entityManager.createQuery(
-				"SELECT f FROM FLIGHT f JOIN AIRPLANE ap ON f.AIRPLANE_ID = ap.ID JOIN AIRPORT aipd ON f.DESTINATION_ID = aipd.ID JOIN AIRPORT aipo ON f.ORIGIN_ID = aipo.ID"
-				, Flight.class);
-//		query.setParameter("Date", date, TemporalType.DATE);
-//		query.setParameter("Time", time, TemporalType.TIME);
-//		query.setParameter("airlineName", airlineName);
-//		query.setParameter("Departure", departure);
-//		query.setParameter("Destination", destination);
-		List <Flight> result = query.getResultList();
-		for (Flight flight : result) {
-			if (flight.getAirline() == null || flight.getOrigin() == null || flight.getDestination() == null) {
-				System.out.println("NULL FLIGHT:" + flight.getId());
-			}
+	public List<Flight> findByFilters(Date date, String airlineName, String departure, String destination) {
+		List<Flight> result;
+		// if (airlineName != null && airlineName != "") {
+		// sql += " and ";
+		// }
+		// if (departure != null && departure != "") {
+		// sql += " and f.origin.name like %:departure%";
+		// }
+		// if (destination != null && destination != "") {
+		// sql += " and f.destination.name like %:destination%";
+		// }
+		String sql = "";
+
+		if (date != null) {
+			sql = "select f from Flight f where f.arrivalDate=:date and f.airline.name like :airlineName and f.origin.name like :departure and f.destination.name like :destination";
+			Query query = entityManager.createQuery(sql, Flight.class);
+			query.setParameter("date", date, TemporalType.DATE);
+			query.setParameter("airlineName", "%" + airlineName + "%");
+			query.setParameter("departure", "%" + departure + "%");
+			query.setParameter("destination", "%" + destination + "%");
+			result = query.getResultList();
+		} else {
+			sql = "select f from Flight f where f.airline.name like :airlineName and f.origin.name like :departure and f.destination.name like :destination";
+			Query query = entityManager.createQuery(sql, Flight.class);
+			query.setParameter("airlineName", "%" + airlineName + "%");
+			query.setParameter("departure", "%" + departure + "%");
+			query.setParameter("destination", "%" + destination + "%");
+			result = query.getResultList();
 		}
-		
+
 		return result;
 
-	
-		
 	}
-	
+
 	public List<Flight> findAll() {
 		return entityManager.createQuery("select f from Flight f", Flight.class).getResultList();
 	}

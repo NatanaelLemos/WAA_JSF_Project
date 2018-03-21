@@ -79,8 +79,8 @@ public class FlightService {
 		return flightDao.findByDepartureBetween(datetimeFrom, datetimeFrom, datetimeTo, datetimeTo);
 	}
 	
-	public List<Flight> findByFilters(Date date, Date time,String airlineName,String departure,String destination ) {
-		return flightDao.findByFilters(date,time,airlineName, departure, destination);
+	public List<Flight> findByFilters(Date date, String airlineName,String departure,String destination ) {
+		return flightDao.findByFilters(date,airlineName, departure, destination);
 	}
 
 	public List<Flight> findAll() {
