@@ -2,22 +2,21 @@ package edu.mum.cs545.ws;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
 import cs545.airline.model.Airline;
 import cs545.airline.service.AirlineService;
 
 @Named
-@Path("hello")
+@Path("/hello")
 public class HelloRest {
 
 	@Inject
 	private AirlineService airlineService;
 
 	@GET
+	@Produces(MediaType.TEXT_PLAIN)
 	public String helloWorld(@DefaultValue("Gorgeous") @QueryParam("name") String name) {
 		return "Hello " + name + "!";
 	}
