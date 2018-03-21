@@ -12,6 +12,7 @@ public class JpaUtil {
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("cs545");
 	private static EntityManager entityManager = null;
 
+	private static int u = 200;
 	public static EntityManager getEntityManager() {
 		if (entityManager == null) {
 			entityManager = emf.createEntityManager();
