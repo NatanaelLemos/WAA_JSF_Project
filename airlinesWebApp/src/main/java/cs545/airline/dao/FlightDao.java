@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
 
+import cs545.airline.model.Airplane;
 import cs545.airline.model.Flight;
 import edu.mum.gf.workaround.JpaUtil;
 
@@ -134,6 +135,29 @@ public class FlightDao {
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Flight> findByFilters(Date date, Date time,String airlineName, String departure,String destination) {
+		Query query = entityManager.createQuery(
+				"SELECT f FROM FLIGHT f JOIN AIRPLANE ap ON f.AIRPLANE_ID = ap.ID JOIN AIRPORT aipd ON f.DESTINATION_ID = aipd.ID JOIN AIRPORT aipo ON f.ORIGIN_ID = aipo.ID"
+				, Flight.class);
+//		query.setParameter("Date", date, TemporalType.DATE);
+//		query.setParameter("Time", time, TemporalType.TIME);
+//		query.setParameter("airlineName", airlineName);
+//		query.setParameter("Departure", departure);
+//		query.setParameter("Destination", destination);
+		List <Flight> result = query.getResultList();
+		for (Flight flight : result) {
+			if (flight.getAirline() == null || flight.getOrigin() == null || flight.getDestination() == null) {
+				System.out.println("NULL FLIGHT:" + flight.getId());
+			}
+		}
+		
+		return result;
+
+	
+		
+	}
+	
 	public List<Flight> findAll() {
 		return entityManager.createQuery("select f from Flight f", Flight.class).getResultList();
 	}
