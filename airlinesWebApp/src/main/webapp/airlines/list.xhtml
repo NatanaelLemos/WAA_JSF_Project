@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Airline's list</title>
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+</h:head>
+<h:body>
+    <h:panelGroup layout="block" styleClass="container">
+        <h1>Airline's list</h1>
+        <h:form>
+            <h:dataTable value="#{airlineService.findAll()}" var="airline" styleClass="table">
+                <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{airline.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="#{airline.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Total flight</f:facet>
+                    <h:outputText value="#{airline.flights.size()}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Edit</f:facet>
+                    <h:commandButton styleClass="btn btn-success" value="edit" action="edit?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{sessionScope.airlineObj}"
+                                                     value="#{airline}"/>
+                    </h:commandButton>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Edit</f:facet>
+                    <h:commandButton styleClass="btn btn-danger" value="delete"
+                                     action="#{airlineService.delete(airline)}"/>
+                </h:column>
+            </h:dataTable>
+            <h:commandButton styleClass="btn btn-primary" value="insert new airline" action="new?faces-redirect=true"/>
+        </h:form>
+    </h:panelGroup>
+</h:body>
+</html>
