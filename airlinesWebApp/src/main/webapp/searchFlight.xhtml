@@ -2,21 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 <h:head>
 	<title>List of Flights</title>
+	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <body>
 	<h1>List of Flights</h1>
 	<h:form>
-		<h4>Search for flight:</h4>
-		<h:outputLabel>Date:</h:outputLabel>
+		<h4>Filter flight by:</h4>
+		<h:outputLabel>Arrival Date:</h:outputLabel>
 		<h:inputText value="#{flightBean.date}" />
-		<h:outputLabel> Time:</h:outputLabel>
-		<h:inputText value="#{flightBean.time}" />
 		<h:outputLabel> Airline Name:</h:outputLabel>
 		<h:inputText value="#{flightBean.airlineName}" />
 		<h:outputLabel> Departure:</h:outputLabel>
@@ -24,11 +22,15 @@
 		<h:outputLabel> Destination:</h:outputLabel>
 		<h:inputText value="#{flightBean.destination}" />
 		<h:commandButton value="Search"
-			actionListener="#{flightBean.filterFlights()}" action="index.xhtml" />
-		<br/><br/>
-
+			actionListener="#{flightBean.filterFlights()}"
+			action="searchFlight.xhtml" styleClass="cross" />
+		<br />
+		<br />
 		<h:dataTable id="flightTable" value="#{flightBean.getFlights()}"
-			var="item" border="1">
+			var="item" border="1" styleClass="flightTable"
+			headerClass="flightTableHeader"
+			rowClasses="flightableOddRow,flightTableEvenRow">
+
 			<h:column>
 				<f:facet name="header">Flight Number</f:facet>
 				<h:outputText value="#{item.flightnr}" />
@@ -43,8 +45,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Airline Name</f:facet>
-				<h:outputText
-					value="#{item.airline.name}" />
+				<h:outputText value="#{item.airline.name}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Orgin</f:facet>
@@ -65,8 +66,6 @@
 				<h:outputText value="#{item.airplane.capacity}" />
 			</h:column>
 		</h:dataTable>
-
-		<!-- <button jsf:action="index.xhtml">Return to home</button> -->
 	</h:form>
 </body>
 </html>

@@ -1,0 +1,35 @@
+.flightTable {   
+   border-collapse:collapse;
+   border:1px solid #000000;
+}
+
+.flightTableHeader {
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:2px;
+}
+
+.flightTableOddRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.flightableEvenRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
+}
+
+.buttons input {
+    margin: 5px;
+    padding: 5px 5px 5px 20px; /* 20px makes room for your background image */
+    border: 1px solid #aaa;
+}
+
+.buttons .apply {
+    background: #eee url(path/to/apply.png) no-repeat 0 50%;
+} 
+
+.buttons .cross {
+    background: #eee url(path/to/cross.png) no-repeat 0 50%;
+} 
