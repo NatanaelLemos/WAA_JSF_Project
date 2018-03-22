@@ -5,7 +5,7 @@ This project is for course project for CS545 Web Application Architecture class 
 Orlando Arrocha
 
 ## Developers
-Tamir Batmunkh, Natanael Lemos, Ky Chau Nguyen 
+Tamir Batmunkh, Natanael Lemos, Ky Nguyen 
 
 ## Date 
 20/Mar/2018 - 22/Mar/2018
@@ -31,8 +31,8 @@ Airline web application
 - REST Test tool
 
 ### Flight Listing feature
-#### path = "http://localhost:8080/airlinesWebApp-0.0.1-SNAPSHOT/airlines/list.xhtml"
-#### done by Chau Ky Nguyen
+#### path = "http://localhost:8080/airlinesWebApp/searchFlight.xhtml"
+#### done by Ky Nguyen
 - Flight list
 - Search flight
 
