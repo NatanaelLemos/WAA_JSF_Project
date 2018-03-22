@@ -15,7 +15,8 @@
         <h:form>
             <h:panelGroup styleClass="form-group" layout="block">
                 <h:outputLabel>Name</h:outputLabel>
-                <h:inputText styleClass="form-control" id="name" value="#{airline.name}"/>
+                <h:inputText styleClass="form-control" id="name" value="#{airline.name}" required="true"/>
+                <h:messages for="name" cssClass="from-text text-danger" layout="block"/>
             </h:panelGroup>
             <h:panelGroup styleClass="form-group" layout="block">
                 <h:commandButton styleClass="btn btn-success" value="create airline" action="#{airlineService.create(airline)}"/>

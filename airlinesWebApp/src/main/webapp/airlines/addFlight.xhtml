@@ -15,32 +15,32 @@
         <h:form>
             <h:panelGroup styleClass="form-group" layout="block">
                 <h:outputLabel>Flight Number</h:outputLabel>
-                <h:inputText styleClass="form-control" id="flightNumber" value="#{flight.flightnr}"/>
+                <h:inputText styleClass="form-control" id="flightNumber" value="#{flight.flightnr}" required="true"/>
                 <h:messages for="flightNumber" cssClass="from-text text-danger" layout="block"/>
             </h:panelGroup>
             <h:panelGroup styleClass="form-group" layout="block">
                 <h:outputLabel>Departure date</h:outputLabel>
-                <h:inputText styleClass="form-control" id="departureDate" value="#{flight.departureDate}"/>
+                <h:inputText styleClass="form-control" id="departureDate" value="#{flight.departureDate}" required="true"/>
                 <h:messages for="departureDate" cssClass="from-text text-danger" layout="block"/>
             </h:panelGroup>
             <h:panelGroup styleClass="form-group" layout="block">
                 <h:outputLabel>Departure time</h:outputLabel>
-                <h:inputText styleClass="form-control" id="departureTime" value="#{flight.departureTime}"/>
+                <h:inputText styleClass="form-control" id="departureTime" value="#{flight.departureTime}" required="true"/>
                 <h:messages for="departureTime" cssClass="from-text text-danger" layout="block"/>
             </h:panelGroup>
             <h:panelGroup styleClass="form-group" layout="block">
                 <h:outputLabel>Arrival date</h:outputLabel>
-                <h:inputText styleClass="form-control" id="arrivalDate" value="#{flight.arrivalDate}"/>
+                <h:inputText styleClass="form-control" id="arrivalDate" value="#{flight.arrivalDate}" required="true"/>
                 <h:messages for="arrivalDate" cssClass="from-text text-danger" layout="block"/>
             </h:panelGroup>
             <h:panelGroup styleClass="form-group" layout="block">
                 <h:outputLabel>Arrival time</h:outputLabel>
-                <h:inputText styleClass="form-control" id="arrivalTime" value="#{flight.arrivalTime}"/>
+                <h:inputText styleClass="form-control" id="arrivalTime" value="#{flight.arrivalTime}" required="true"/>
                 <h:messages for="arrivalTime" cssClass="from-text text-danger" layout="block"/>
             </h:panelGroup>
             <h:panelGroup styleClass="form-group" layout="block">
                 <h:outputLabel>Origin</h:outputLabel>
-                <h:selectOneMenu id="origin" styleClass="form-control" value="#{flight.origin}">
+                <h:selectOneMenu id="origin" styleClass="form-control" value="#{flight.origin}" required="true">
                     <f:converter binding="#{airportConverter}" />
                     <f:selectItem itemValue="#{null}" itemLabel="Please select the origin" />
                     <f:selectItems value="#{airportService.findAll()}" var="origin"
@@ -51,7 +51,7 @@
             </h:panelGroup>
             <h:panelGroup styleClass="form-group" layout="block">
                 <h:outputLabel>Destination</h:outputLabel>
-                <h:selectOneMenu id="destination" styleClass="form-control" value="#{flight.destination}" >
+                <h:selectOneMenu id="destination" styleClass="form-control" value="#{flight.destination}" required="true">
                     <f:converter binding="#{airportConverter}" />
                     <f:selectItem itemValue="#{null}" itemLabel="Please select the destination" />
                     <f:selectItems value="#{airportService.findAll()}" var="destination"
@@ -61,7 +61,7 @@
             </h:panelGroup>
             <h:panelGroup styleClass="form-group" layout="block">
                 <h:outputLabel>Airplane</h:outputLabel>
-                <h:selectOneMenu id="airplane" styleClass="form-control" value="#{flight.airplane}">
+                <h:selectOneMenu id="airplane" styleClass="form-control" value="#{flight.airplane}" required="true">
                     <f:converter binding="#{airplaneConverter}" />
                     <f:selectItem itemValue="#{null}" itemLabel="Please select the airplane" />
                     <f:selectItems value="#{airplaneService.findAll()}" var="airplane"
