@@ -31,9 +31,9 @@ public class FlightService {
     }
 
     // DELETE MUST BE DONE THROUGH UPDATE ON RELATED OBJECT
-    // public void delete(Flight flight) {
-    // flightDao.delete(flight);
-    // }
+    public void delete(Flight flight) {
+        flightDao.delete(flight);
+    }
 
     public Flight update(Flight flight) {
         return flightDao.update(flight);
@@ -75,13 +75,13 @@ public class FlightService {
         return flightDao.findByDeparture(datetime, datetime);
     }
 
-	public List<Flight> findByDepartureBetween(Date datetimeFrom, Date datetimeTo) {
-		return flightDao.findByDepartureBetween(datetimeFrom, datetimeFrom, datetimeTo, datetimeTo);
-	}
-	
-	public List<Flight> findByFilters(Date date, String airlineName,String departure,String destination ) {
-		return flightDao.findByFilters(date,airlineName, departure, destination);
-	}
+    public List<Flight> findByDepartureBetween(Date datetimeFrom, Date datetimeTo) {
+        return flightDao.findByDepartureBetween(datetimeFrom, datetimeFrom, datetimeTo, datetimeTo);
+    }
+
+    public List<Flight> findByFilters(Date date, String airlineName, String departure, String destination) {
+        return flightDao.findByFilters(date, airlineName, departure, destination);
+    }
 
     public List<Flight> findAll() {
         return flightDao.findAll();

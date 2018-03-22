@@ -181,9 +181,9 @@ paths:
             type: object
             items:
               $ref: '#/definitions/Error'
-        
-            
-            
+
+
+
   /airplane:
     get:
       summary: Get all the airplanes
@@ -294,8 +294,8 @@ paths:
             type: object
             items:
               $ref: '#/definitions/Error'
-            
-            
+
+
   /airport:
     get:
       summary: Get all the airports
@@ -410,8 +410,8 @@ paths:
             type: object
             items:
              $ref: '#/definitions/Error'
-            
-            
+
+
   /flight:
     get:
       summary: Get all the Flights
@@ -470,7 +470,7 @@ paths:
           schema:
             type: object
             items:
-              $ref: '#/definitions/Flight'
+              $ref: '#/definitions/FlightEdit'
           required: true
       responses:
         200:
@@ -504,8 +504,8 @@ paths:
             type: object
             items:
               $ref: '#/definitions/Error'
-    
-    
+
+
 definitions:
   Airline:
     type: object
@@ -620,6 +620,39 @@ definitions:
       airplaneId:
         type: integer
         description: Id of the airplane
+  FlightEdit:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Id of the flight
+      flightnr:
+        type: string
+        description: Number of the flight
+      departureDate:
+        type: string
+        description: Date of departure
+      departureTime:
+        type: string
+        description: Time of departure
+      arrivalDate:
+        type: string
+        description: Date of arrival
+      arrivalTime:
+        type: string
+        description: Time of arrival
+      originId:
+        type: integer
+        description: Id of the origin airport
+      destinationId:
+        type: integer
+        description: Id of the destination airport
+      airplaneId:
+        type: integer
+        description: Id of the airplane
+      airlineId:
+        type: integer
+        description: Airline id
   Error:
     type: object
     properties:
