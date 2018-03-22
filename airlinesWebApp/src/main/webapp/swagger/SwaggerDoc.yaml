@@ -29,9 +29,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
     post:
       summary: Create a new airline
       tags:
@@ -67,15 +65,11 @@ paths:
         200:
           description: Airline
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Airline'
+            $ref: '#/definitions/Airline'
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-             $ref: '#/definitions/Error'
+           $ref: '#/definitions/Error'
     put:
       summary: Edit one airline
       tags:
@@ -90,23 +84,17 @@ paths:
           in: body
           description: Data to be changed
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Airline'
+            $ref: '#/definitions/Airline'
           required: true
       responses:
         200:
           description: Airline updated
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Airline'
+            $ref: '#/definitions/Airline'
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
     delete:
       summary: Remove an airline
       tags:
@@ -123,9 +111,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
   /airline/{id}/flight:
     get:
       summary: Return all the flights of that airline
@@ -147,9 +133,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
     post:
       summary: Create a new flight for the airline
       tags:
@@ -164,23 +148,17 @@ paths:
           in: body
           description: Flight to insert
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/AirlineFlight'
+            $ref: '#/definitions/AirlineFlight'
           required: true
       responses:
         200:
           description: Created flight
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Flight'
+            $ref: '#/definitions/Flight'
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
 
 
 
@@ -215,15 +193,11 @@ paths:
         200:
           description: Airplane created
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Airplane'
+            $ref: '#/definitions/Airplane'
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
   /airplane/{id}:
     get:
       summary: Get the airplane with this id
@@ -239,9 +213,7 @@ paths:
         200:
           description: Airplane
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Airplane'
+            $ref: '#/definitions/Airplane'
         default:
           description: Unexpected error
           schema:
@@ -266,15 +238,11 @@ paths:
         200:
           description: Airplane updated
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Airplane'
+            $ref: '#/definitions/Airplane'
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
     delete:
       summary: Remove an airplane
       tags:
@@ -291,9 +259,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
 
 
   /airport:
@@ -327,15 +293,11 @@ paths:
         200:
           description: Airport created
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Airport'
+            $ref: '#/definitions/Airport'
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
   /airport/{id}:
     get:
       summary: Get the airport with this id
@@ -351,15 +313,11 @@ paths:
         200:
           description: Airport
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Airport'
+            $ref: '#/definitions/Airport'
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
     put:
       summary: Edit one airport
       tags:
@@ -374,23 +332,17 @@ paths:
           in: body
           description: Data to be changed
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Airport'
+            $ref: '#/definitions/Airport'
           required: true
       responses:
         200:
           description: Airport updated
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Airport'
+            $ref: '#/definitions/Airport'
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
     delete:
       summary: Remove an airport
       tags:
@@ -407,9 +359,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-             $ref: '#/definitions/Error'
+           $ref: '#/definitions/Error'
 
 
   /flight:
@@ -427,9 +377,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
   /flight/{id}:
     get:
       summary: Get the flight with this id
@@ -445,15 +393,11 @@ paths:
         200:
           description: Flight
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Flight'
+            $ref: '#/definitions/Flight'
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
     put:
       summary: Edit one flight
       tags:
@@ -468,23 +412,17 @@ paths:
           in: body
           description: Data to be changed
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/FlightEdit'
+            $ref: '#/definitions/FlightEdit'
           required: true
       responses:
         200:
           description: Flight updated
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Flight'
+            $ref: '#/definitions/Flight'
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
     delete:
       summary: Remove a flight
       tags:
@@ -501,9 +439,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            type: object
-            items:
-              $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'
 
 
 definitions:
