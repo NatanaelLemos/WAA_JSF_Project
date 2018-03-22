@@ -4,3 +4,5 @@ target/
 bin/
 derby-docker/dbs/
 derby-docker/nodejs/
+sun-appserv-samples/
+derby.log
