@@ -34,7 +34,15 @@
                     </h:commandButton>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Edit</f:facet>
+                    <f:facet name="header">Add Flight</f:facet>
+                    <h:commandButton styleClass="btn btn-primary" value="add Flight"
+                                     action="addFlight?faces-redirect=true" >
+                        <f:setPropertyActionListener target="#{sessionScope.airlineObj}"
+                                                     value="#{airline}"/>
+                    </h:commandButton>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Delete</f:facet>
                     <h:commandButton styleClass="btn btn-danger" value="delete"
                                      action="#{airlineService.delete(airline)}"/>
                 </h:column>

@@ -19,13 +19,13 @@ public class Flight {
 	private long id;
 	private String flightnr;
 	@Temporal(TemporalType.DATE)
-	private Date departureDate;
+	private Date departureDate = new Date();
 	@Temporal(TemporalType.TIME)
-	private Date departureTime;
+	private Date departureTime = new Date();
 	@Temporal(TemporalType.DATE)
-	private Date arrivalDate;
+	private Date arrivalDate = new Date();
 	@Temporal(TemporalType.TIME)
-	private Date arrivalTime;
+	private Date arrivalTime = new Date();
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Airline airline;
 	@ManyToOne(cascade = CascadeType.PERSIST)

@@ -9,6 +9,12 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 
+    <managed-bean>
+        <managed-bean-name>flight</managed-bean-name>
+        <managed-bean-class>cs545.airline.model.Flight</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
     <navigation-rule>
         <from-view-id>/airlines/list.xhtml</from-view-id>
         <navigation-case>
@@ -39,6 +45,16 @@
         <from-view-id>/airlines/new.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{airlineService.create(airline)}</from-action>
+            <if>#{true}</if>
+            <to-view-id>/airlines/list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/airlines/addFlight.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{sessionScope.airlineObj.addFlight(flight)}</from-action>
             <if>#{true}</if>
             <to-view-id>/airlines/list.xhtml</to-view-id>
             <redirect/>
