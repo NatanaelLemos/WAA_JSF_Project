@@ -38,6 +38,6 @@ Airline web application
 
 ## Technologies
 JSF, Facelets, JAX-RS,
-GlassFish, Maven, Derby, Hibernate,
+GlassFish, Maven, Derby,
 Swagger,
 Github
