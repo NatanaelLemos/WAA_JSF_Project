@@ -1,0 +1,938 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the documentation of how to use the Airline system's REST API",
+    "version": "1.0.0",
+    "title": "WAA Airline",
+    "termsOfService": "https://github.com/NatanaelLemos/WAA_JSF_Project/blob/master/LICENSE",
+    "contact": {
+      "email": "ntlemos@mum.edu"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/NatanaelLemos/WAA_JSF_Project/blob/master/LICENSE"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/airlinesWebApp-0.0.1-SNAPSHOT/rs",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/airline": {
+      "get": {
+        "summary": "Get all the airlines",
+        "tags": [
+          "Airlines"
+        ],
+        "responses": {
+          "200": {
+            "description": "List with all the airlines",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Airline"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new airline",
+        "tags": [
+          "Airlines"
+        ],
+        "parameters": [
+          {
+            "name": "airline",
+            "in": "body",
+            "description": "Data to be submitted",
+            "schema": {
+              "$ref": "#/definitions/Airline"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airline created",
+            "schema": {
+              "$ref": "#/definitions/Airline"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/airline/{id}": {
+      "get": {
+        "summary": "Get the airline with this id",
+        "tags": [
+          "Airlines"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airline to return",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airline",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Airline"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Edit one airline",
+        "tags": [
+          "Airlines"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airline to edit",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "airline",
+            "in": "body",
+            "description": "Data to be changed",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Airline"
+              }
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airline updated",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Airline"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove an airline",
+        "tags": [
+          "Airlines"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airline to remove",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airline deleted"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/airline/{id}/flight": {
+      "get": {
+        "summary": "Return all the flights of that airline",
+        "tags": [
+          "Airlines"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airline to get flights",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List with all the flights",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Flight"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new flight for the airline",
+        "tags": [
+          "Airlines"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airline to get flights",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "airlineFlight",
+            "in": "body",
+            "description": "Flight to insert",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/AirlineFlight"
+              }
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created flight",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Flight"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/airplane": {
+      "get": {
+        "summary": "Get all the airplanes",
+        "tags": [
+          "Airplanes"
+        ],
+        "responses": {
+          "200": {
+            "description": "List with all the airplanes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Airplane"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new airplane",
+        "tags": [
+          "Airplanes"
+        ],
+        "parameters": [
+          {
+            "name": "airplane",
+            "in": "body",
+            "description": "Data to be submitted",
+            "schema": {
+              "$ref": "#/definitions/Airplane"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airplane created",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Airplane"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/airplane/{id}": {
+      "get": {
+        "summary": "Get the airplane with this id",
+        "tags": [
+          "Airplanes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airplane to get",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airplane",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Airplane"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Edit one airplane",
+        "tags": [
+          "Airplanes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airplane to edit",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "airplane",
+            "in": "body",
+            "description": "Data to be changed",
+            "schema": {
+              "$ref": "#/definitions/Airplane"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airplane updated",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Airplane"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove an airplane",
+        "tags": [
+          "Airplanes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airplane to remove",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airplane deleted"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/airport": {
+      "get": {
+        "summary": "Get all the airports",
+        "tags": [
+          "Airports"
+        ],
+        "responses": {
+          "200": {
+            "description": "List with all the airports",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Airport"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new airport",
+        "tags": [
+          "Airports"
+        ],
+        "parameters": [
+          {
+            "name": "airport",
+            "in": "body",
+            "description": "Data to be submitted",
+            "schema": {
+              "$ref": "#/definitions/Airport"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airport created",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Airport"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/airport/{id}": {
+      "get": {
+        "summary": "Get the airport with this id",
+        "tags": [
+          "Airports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airport",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airport",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Airport"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Edit one airport",
+        "tags": [
+          "Airports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airport",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "airport",
+            "in": "body",
+            "description": "Data to be changed",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Airport"
+              }
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airport updated",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Airport"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove an airport",
+        "tags": [
+          "Airports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the airport",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airport deleted"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/flight": {
+      "get": {
+        "summary": "Get all the Flights",
+        "tags": [
+          "Flights"
+        ],
+        "responses": {
+          "200": {
+            "description": "List with all the flights",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Flight"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/flight/{id}": {
+      "get": {
+        "summary": "Get the flight with this id",
+        "tags": [
+          "Flights"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the flight",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Flight",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Flight"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Edit one flight",
+        "tags": [
+          "Flights"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the flight",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "flight",
+            "in": "body",
+            "description": "Data to be changed",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Flight"
+              }
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Flight updated",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Flight"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove a flight",
+        "tags": [
+          "Flights"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the flight",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Flight deleted"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Airline": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Id of the object. This property is created on server"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the airline"
+        }
+      }
+    },
+    "Airplane": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Id of the object. This property is created on server"
+        },
+        "serialnr": {
+          "type": "string",
+          "description": "Serial number of the plane"
+        },
+        "model": {
+          "type": "string",
+          "description": "Model"
+        },
+        "capacity": {
+          "type": "integer",
+          "description": "Maximum capacity of the plane"
+        }
+      }
+    },
+    "Airport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Id of the object. This property is created on server"
+        },
+        "airportcode": {
+          "type": "string",
+          "description": "Unique code of the airport"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the airport"
+        },
+        "city": {
+          "type": "string",
+          "description": "City of the airport"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country of the airport"
+        }
+      }
+    },
+    "Flight": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Id of the object. This property is created on server"
+        },
+        "flightnr": {
+          "type": "string",
+          "description": "Number of the flight"
+        },
+        "departureDate": {
+          "type": "string",
+          "description": "Date of departure"
+        },
+        "departureTime": {
+          "type": "string",
+          "description": "Time of departure"
+        },
+        "arrivalDate": {
+          "type": "string",
+          "description": "Date of arrival"
+        },
+        "arrivalTime": {
+          "type": "string",
+          "description": "Time of arrival"
+        },
+        "airline": {
+          "type": "object",
+          "items": {
+            "$ref": "#/definitions/Airline"
+          },
+          "description": "Airline providing the flight"
+        },
+        "origin": {
+          "type": "object",
+          "items": {
+            "$ref": "#/definitions/Airport"
+          },
+          "description": "Airport of origin"
+        },
+        "destination": {
+          "type": "object",
+          "items": {
+            "$ref": "#/definitions/Airport"
+          },
+          "description": "Airport of destiny"
+        },
+        "airplane": {
+          "type": "object",
+          "items": {
+            "$ref": "#/definitions/Airport"
+          },
+          "description": "Airplane of the flight"
+        }
+      }
+    },
+    "AirlineFlight": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Id of the flight"
+        },
+        "flightnr": {
+          "type": "string",
+          "description": "Number of the flight"
+        },
+        "departureDate": {
+          "type": "string",
+          "description": "Date of departure"
+        },
+        "departureTime": {
+          "type": "string",
+          "description": "Time of departure"
+        },
+        "arrivalDate": {
+          "type": "string",
+          "description": "Date of arrival"
+        },
+        "arrivalTime": {
+          "type": "string",
+          "description": "Time of arrival"
+        },
+        "originId": {
+          "type": "integer",
+          "description": "Id of the origin airport"
+        },
+        "destinationId": {
+          "type": "integer",
+          "description": "Id of the destination airport"
+        },
+        "airplaneId": {
+          "type": "integer",
+          "description": "Id of the airplane"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
